@@ -27,7 +27,6 @@ public class LobbyUIManager : MonoBehaviour
     [SerializeField] private GameObject sessionButtonPrefab; // リストの1項目のプレハブ
 
     [Header("Create Room UI")]
-    [SerializeField] private TMP_InputField hostNameInput;
     [SerializeField] private TMP_InputField roomNameInput;
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private Button executeCreateButton;
@@ -158,11 +157,10 @@ public class LobbyUIManager : MonoBehaviour
         try
         {
             string rName = roomNameInput.text.Replace(":::", "");
-            string hName = hostNameInput.text.Replace(":::", "");
             string pass = passwordInput.text;
             bool hasPass = !string.IsNullOrEmpty(pass);
 
-            string combinedName = $"{rName}:::{hName}:::{(hasPass ? "true" : "false")}";
+            string combinedName = $"{rName}:::{(hasPass ? "true" : "false")}";
 
             var options = new SessionOptions { MaxPlayers = 4, Name = combinedName, IsPrivate = false }.WithRelayNetwork();
             if (hasPass) options.Password = pass;
