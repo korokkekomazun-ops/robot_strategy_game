@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5596e064108f2e34fa1e2be8c4631668, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -340,6 +340,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD:Assets/Scenes/SampleScene.unity
+=======
 --- !u!1 &1008110806
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,10 +420,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> ad367a667e0156f1b80a563c02b8db3896216223:Assets/Scenes/MainScene.unity
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
+<<<<<<< HEAD:Assets/Scenes/SampleScene.unity
+=======
   - {fileID: 1008110808}
+>>>>>>> ad367a667e0156f1b80a563c02b8db3896216223:Assets/Scenes/MainScene.unity
