@@ -72,20 +72,32 @@ public class LobbyUIManager : MonoBehaviour
         SetStatus("ネットワークを準備中...");
         try
         {
-            if (!isServicesInitialized)
+            // 1. Unity Services自体の初期化チェック
+            // （シーンを行き来してすでに初期化済みの場合はスキップする）
+            if (UnityServices.State != ServicesInitializationState.Initialized)
             {
                 InitializationOptions options = new InitializationOptions();
                 options.SetProfile(System.Guid.NewGuid().ToString().Substring(0, 8));
                 await UnityServices.InitializeAsync(options);
-                await AuthenticationService.Instance.SignInAnonymouslyAsync();
-                isServicesInitialized = true;
             }
+
+            // 2. 認証（サインイン）のチェック
+            // （すでにサインイン済みの場合はスキップする）
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            }
+
+            // 初期化・認証が終わったら掲示板を更新
             await RefreshBrowserAsync();
         }
         catch (Exception e)
         {
             SetStatus("初期化エラー");
             Debug.LogError(e);
+
+            // エラーで止まってしまわないように、とりあえず掲示板画面に戻す
+            SwitchPanel(browserPanel);
         }
     }
 
