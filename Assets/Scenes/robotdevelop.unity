@@ -1479,7 +1479,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5454e122133ad224fbd666c26461d879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusPointManager
+  startingMode: 0
   point: 15
+  statusPointCost: 1
+  aptitudePointCost: 3
+  initialCP: 7500
+  statusUpgradeCost: 500
+  aptitudeUpgradeCost: 500
   MaxHP: 0
   Attack: 0
   Defence: 0
@@ -1502,6 +1508,7 @@ MonoBehaviour:
   skyText: {fileID: 1925227752}
   seaText: {fileID: 1421430566}
   typeText: {fileID: 323350544}
+  statusSummaryText: {fileID: 2138574638}
 --- !u!1 &484522118
 GameObject:
   m_ObjectHideFlags: 0
@@ -4213,7 +4220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1748092100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5248,18 +5255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Name
-
-
-    MAXHP:
-
-    Atack:
-
-    Defence:
-
-    MaxSpeed:
-
-    attribute:'
+  m_text: "Type: Humanoid\nMaxHP: 0\nAttack: 0\nDefence: 0\nSpeed: 0\nSea: C\nGround: C\nSky: C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5286,15 +5282,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29
-  m_fontSizeBase: 29
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 14
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -5325,7 +5321,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -27.21901, z: 0, w: 0}
+  m_margin: {x: 8, y: 8, z: 8, w: 8}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5640,6 +5636,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 664f2662e13585844b1069e2e5769bae, type: 3}
+--- !u!1001 &880000001
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 810000003, guid: 93176c0f5628494b8f4d7cd9f2b6ba82, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 343069964}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93176c0f5628494b8f4d7cd9f2b6ba82, type: 3}
+--- !u!4 &880000002 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 810000002, guid: 93176c0f5628494b8f4d7cd9f2b6ba82, type: 3}
+  m_PrefabInstance: {fileID: 880000001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5647,3 +5665,4 @@ SceneRoots:
   - {fileID: 343069965}
   - {fileID: 1748092103}
   - {fileID: 2105664817}
+  - {fileID: 880000002}
