@@ -93,6 +93,16 @@ namespace RobotStrategy.Battle
             if(healthFill!=null)healthFill.localScale=new Vector3((float)HP/MaxHP,1,1);
         }
 
+        // 最大HPを超えず、破壊済みの機体は復活させません。
+        public int Heal(int amount)
+        {
+            if (!Alive || amount <= 0) return 0;
+            int gained = Mathf.Min(amount, MaxHP - HP);
+            HP += gained;
+            if (healthFill != null) healthFill.localScale = new Vector3((float)HP / MaxHP, 1, 1);
+            return gained;
+        }
+
         public void TakeDamage(int attack)
         {
             if (!Alive) return;

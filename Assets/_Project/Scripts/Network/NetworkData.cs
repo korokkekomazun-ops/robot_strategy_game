@@ -33,6 +33,11 @@ namespace RobotStrategy.Battle
         public UnitSettings stats;
         public DesignInfo design;
     }
+    [Serializable] public class BoxReport
+    {
+        public int seat;
+        public float x,y;
+    }
     [Serializable] public class BattleState
     {
         public int map,mapSize,sandWidth,riverWidth;
@@ -44,5 +49,6 @@ namespace RobotStrategy.Battle
         public PlayerInfo[] players;
         public DesignInfo[] designs;
         public UnitReport[] units;
+        public BoxReport[] boxes;
     }
 }

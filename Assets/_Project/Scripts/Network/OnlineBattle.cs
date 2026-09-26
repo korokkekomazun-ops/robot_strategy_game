@@ -144,7 +144,11 @@ namespace RobotStrategy.Battle
                 seat.initial=new RobotDesign("初期"+CountryRules.KindName((ChassisKind)cmd.kind),cmd.levels,(ChassisKind)cmd.kind,seat.nation);
                 seat.designs=new DesignList(CountryRules.InitialCP(startingBattleCP,seat.nation,nationACPBonus),seat.initial);
                 seat.ready=true;
-                if(client==net.LocalClientId){catalog=seat.designs;localReady=true;}
+                if(client==net.LocalClientId)
+                {
+                    catalog=seat.designs;localReady=true;
+                    initialSetup=false;CloseDraft();ShowPreparationPage(PreparationPage.Hidden);
+                }
                 if(mapConfirmed&&peers.Count==4&&peers.Values.All(p=>p.ready))StartLanBattle();
                 return;
             }
@@ -245,7 +249,17 @@ namespace RobotStrategy.Battle
                 countdownText.text=number>0?Mathf.Clamp(number,1,3).ToString():"戦闘スタート";
             }
             else if(!battleStarted&&localReady)
-                ShowLanWaiting("マップ："+MapPattern.Name(battleMap)+"\n4人の準備完了を待っています\n"+(net.IsServer?"ホストIP："+hostAddresses+"\n":"")+string.Join("\n",players.Select(p=>(p.seat<0?"選択中":"P"+(p.seat+1)+" "+PlayerSeats.Corner(p.seat)+" "+(Nation)p.nation+"国")+(p.ready?"：準備完了":"：設定中")))+"\n接続 "+players.Length+" / 4");
+            {
+                // 自分の準備が済んでも、4人全員が完了するまでは戦闘を始めません。
+                int readyCount=players.Count(p=>p.ready);
+                string members=string.Join("\n",players.OrderBy(p=>p.seat<0?4:p.seat).Select(p=>
+                    (p.seat<0?"国家を選択中":"P"+(p.seat+1)+" "+PlayerSeats.Corner(p.seat)+" "+(Nation)p.nation+"国")
+                    +(p.seat==localSeat?"（あなた）":"")+(p.ready?"：準備完了":"：準備中")));
+                for(int i=players.Length;i<4;i++)members+="\n未参加：接続を待っています";
+                ShowLanWaiting("あなたの準備は完了しました\nほかのプレイヤーの準備完了を待っています\n"
+                    +"準備完了 "+readyCount+" / 4人　接続 "+players.Length+" / 4人\n"
+                    +members+"\n全員の準備完了後、自動でカウントダウンを開始します。");
+            }
             else lanWaitOverlay.SetActive(false);
         }
         private void ShowLanWaiting(string message)
@@ -261,6 +275,7 @@ namespace RobotStrategy.Battle
                 seat=seat.slot,nation=(int)seat.nation,cp=seat.designs?.CP??startingBattleCP,
                 started=battleStarted,finished=finished,result=result,ready=seat.ready,feedback=seat.report,
                 countdown=countingDown?Mathf.Max(0,networkCountdownEnd-Time.unscaledTime):-1,nextSpawn=Mathf.Max(0,nextSpawn-Time.time),
+                boxes=GetHealthBoxes(),
                 players=peers.Values.Select(p=>new PlayerInfo{seat=p.slot,nation=(int)p.nation,ready=p.ready}).ToArray(),
                 designs=seat.designs?.Designs.Select(DesignInfo.From).ToArray(),
                 units=units.Where(u=>u!=null&&u.Alive).Select(u=>new UnitReport{id=u.NetworkId,seat=u.OwnerSlot,nation=(int)u.Country,hp=u.HP,role=u.IsBase?1:u==boss?2:u.Design==null?3:0,
@@ -322,6 +337,7 @@ namespace RobotStrategy.Battle
                     var unit=replicatedUnits[id];units.Remove(unit);bases.Remove(unit);if(selected==unit)selected=null;
                     if(unit==boss)boss=null;Destroy(unit.gameObject);replicatedUnits.Remove(id);
                 }
+                ApplyHealthBoxes(state.boxes);
                 UpdateLanPresentation(state.players,state.countdown);
                 if(battleStarted)countdownOverlay.SetActive(false);
                 if(finished&&!wasFinished){ShowBattleResult();resultText.text=result;}

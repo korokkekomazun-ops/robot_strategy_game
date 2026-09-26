@@ -249,7 +249,7 @@ namespace RobotStrategy.Battle
             }
             draftLabel.text=initialSetup?$"{playerNation}国 {CountryRules.KindName(basis.Kind)}　残り {PointBudget-cost} / {PointBudget} ポイント":$"編集元：{basis.Name}　必要 {cost:N0} CP ／ 所持 {catalog.CP:N0}";
             messageLabel.text=finished?"戦闘が終了しました。":feedback;
-            confirmButton.GetComponentInChildren<TextMeshProUGUI>().text=initialSetup?"この機体で出撃（カウントダウン開始）":"確定して試作機1体を配備";
+            confirmButton.GetComponentInChildren<TextMeshProUGUI>().text=initialSetup?(networkMode?"準備完了（全員が揃うまで待機）":"この機体で出撃（カウントダウン開始）"):"確定して試作機1体を配備";
             confirmButton.interactable=!finished&&(initialSetup||changed)&&cost>=0&&cost<=AvailableBudget;
         }
 

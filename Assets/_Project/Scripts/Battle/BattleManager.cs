@@ -198,6 +198,7 @@ namespace RobotStrategy.Battle
                     SpawnSmallEnemyWave();
                     nextSpawn = Time.time + Mathf.Max(0.1f, spawnInterval);
                 }
+                TickHealthBoxes();
                 for (int i = 0; i < units.Count && !finished; i++) TickUnit(units[i]);
                 bool anyBase = bases.Exists(b => b != null && b.Alive && b.Country == playerNation);
                 if (!finished && boss != null && !boss.Alive) EndBattle("VICTORY - central monster defeated");

@@ -26037,6 +26037,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a402c6037744afa97a597dc73fbab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotStrategy.Battle.BattleManager
+  countdownStepSeconds: 1
+  battleStartMessageSeconds: 0.8
+  enableLocalPrototype: 1
+  mapCamera: {fileID: 0}
+  legacyCanvas: {fileID: 0}
+  legacyUIController: {fileID: 0}
+  forestSprite: {fileID: -3387323357559299211, guid: d58cfcb0dc088d842a4a08957d53914c, type: 3}
+  robotSprite: {fileID: 1422740266798274216, guid: f1ff87f1ce4cfbf4099ce5fa740d2711, type: 3}
+  bossSprite: {fileID: 5830694933855508796, guid: 98a6cf474510ead41a8a9f8bf2fb6c66, type: 3}
+  smallEnemySprite: {fileID: -2531241511545790211, guid: 7ceef77c0c8745240bc74fcaa24cf124, type: 3}
+  enableHealthBoxes: 1
+  healthBoxSprite: {fileID: 2608815185730992250, guid: b90af03aa62827f4fa0a11ad44d73a5f, type: 3}
+  robotHealAmount: 100
+  baseHealAmount: 100
+  healthBoxRange: 1.5
+  healthBoxSeconds: 30
+  smokeSprite: {fileID: 5628271608978257059, guid: 1608272463018f54bb433346c4aa2e59, type: 3}
+  uiFont: {fileID: 11400000, guid: 5ab90dd15f217014e85d5097be7eb953, type: 2}
+  mapSize: 50
+  initialRobotCount: 3
+  spawnInterval: 10
+  spawnRadius: 3
+  maxSmallEnemies: 120
+  minEnemiesPerWave: 10
+  maxEnemiesPerWave: 20
+  cameraSpeed: 12
+  robotStats:
+    maxHP: 100
+    attack: 10
+    armour: 0
+    damageTakenMultiplier: 1
+    moveSpeed: 3
+    attackRange: 2.5
+    attackInterval: 1
+  bossStats:
+    maxHP: 2000
+    attack: 75
+    armour: 0
+    damageTakenMultiplier: 0.25
+    moveSpeed: 0
+    attackRange: 4
+    attackInterval: 1
+  smallEnemyStats:
+    maxHP: 20
+    attack: 25
+    armour: 0
+    damageTakenMultiplier: 0.25
+    moveSpeed: 1.5
+    attackRange: 1.2
+    attackInterval: 1
+  baseStats:
+    maxHP: 400
+    attack: 0
+    armour: 0
+    damageTakenMultiplier: 1
+    moveSpeed: 0
+    attackRange: 1
+    attackInterval: 1
+  sandSprite: {fileID: -2361929244336286096, guid: c159d86dbebee3149a6aba667a978815, type: 3}
+  sandStripWidth: 8
   tankBalance:
     stats:
       maxHP: 180
@@ -26132,70 +26192,6 @@ MonoBehaviour:
   speedPerLevel: 0.5
   minimumUIFontSize: 16
   pixelPerfectUI: 1
-  countdownStepSeconds: 1
-  battleStartMessageSeconds: 0.8
-  battleMap: 0
-  riverWidth: 3
-  riverSprite: {fileID: -6595845458623222489, guid: a7f7b0ab6c065850941706d93dd899be, type: 3}
-  enableLocalPrototype: 1
-  mapCamera: {fileID: 0}
-  legacyCanvas: {fileID: 0}
-  legacyUIController: {fileID: 0}
-  forestSprite: {fileID: -3387323357559299211, guid: d58cfcb0dc088d842a4a08957d53914c, type: 3}
-  robotSprite: {fileID: 1422740266798274216, guid: f1ff87f1ce4cfbf4099ce5fa740d2711, type: 3}
-  bossSprite: {fileID: 5830694933855508796, guid: 98a6cf474510ead41a8a9f8bf2fb6c66, type: 3}
-  smallEnemySprite: {fileID: -2531241511545790211, guid: 7ceef77c0c8745240bc74fcaa24cf124, type: 3}
-  smokeSprite: {fileID: 5628271608978257059, guid: 1608272463018f54bb433346c4aa2e59, type: 3}
-  uiFont: {fileID: 11400000, guid: 5ab90dd15f217014e85d5097be7eb953, type: 2}
-  mapSize: 50
-  initialRobotCount: 3
-  spawnInterval: 10
-  spawnRadius: 3
-  maxSmallEnemies: 120
-  minEnemiesPerWave: 10
-  maxEnemiesPerWave: 20
-  cameraSpeed: 12
-  robotStats:
-    maxHP: 100
-    attack: 10
-    armour: 0
-    damageTakenMultiplier: 1
-    moveSpeed: 3
-    attackRange: 2.5
-    attackInterval: 1
-  bossStats:
-    maxHP: 2000
-    attack: 75
-    armour: 0
-    damageTakenMultiplier: 0.25
-    moveSpeed: 0
-    attackRange: 4
-    attackInterval: 1
-  smallEnemyStats:
-    maxHP: 40
-    attack: 25
-    armour: 0
-    damageTakenMultiplier: 0.25
-    moveSpeed: 1.5
-    attackRange: 1.2
-    attackInterval: 1
-  baseStats:
-    maxHP: 400
-    attack: 0
-    armour: 0
-    damageTakenMultiplier: 1
-    moveSpeed: 0
-    attackRange: 1
-    attackInterval: 1
-  sandSprite: {fileID: -2361929244336286096, guid: c159d86dbebee3149a6aba667a978815, type: 3}
-  sandStripWidth: 8
-  sceneUICanvas: {fileID: 312333394}
-  cornerInset: 5
-  npcAutoMove: 1
-  nationAColor: {r: 0.25, g: 0.65, b: 1, a: 1}
-  nationBColor: {r: 1, g: 0.32, b: 0.28, a: 1}
-  nationCColor: {r: 0.35, g: 0.9, b: 0.45, a: 1}
-  nationDColor: {r: 1, g: 0.78, b: 0.2, a: 1}
   nationACPBonus: 10000
   nationBPointBonus: 20
   nationDDamageMultiplier: 1.5
@@ -26217,6 +26213,16 @@ MonoBehaviour:
   transformerDamageTakenMultiplier: 1
   humanoidDamageTakenMultiplier: 1
   giantDamageTakenMultiplier: 1
+  battleMap: 0
+  riverWidth: 3
+  riverSprite: {fileID: -6595845458623222489, guid: a7f7b0ab6c065850941706d93dd899be, type: 3}
+  sceneUICanvas: {fileID: 312333394}
+  cornerInset: 5
+  npcAutoMove: 1
+  nationAColor: {r: 0.25, g: 0.65, b: 1, a: 1}
+  nationBColor: {r: 1, g: 0.32, b: 0.28, a: 1}
+  nationCColor: {r: 0.35, g: 0.9, b: 0.45, a: 1}
+  nationDColor: {r: 1, g: 0.78, b: 0.2, a: 1}
 --- !u!1 &812029515
 GameObject:
   m_ObjectHideFlags: 0
